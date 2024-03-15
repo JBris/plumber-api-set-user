@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  plumber:
+    image: plumber-api
+    command: [ "Rscript", "app.R" ]
+    build:
+      context: .
+    volumes:
+      - ./app.R:/app/app.R
+      - ./plumber.R:/app/plumber.R
+      - ./create_user.sh:/app/create_user.sh
+      - ./hello_user.sh:/app/hello_user.sh
+    ports:
+      - 9666:8080
